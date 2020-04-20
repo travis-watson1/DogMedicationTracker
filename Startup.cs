@@ -27,6 +27,11 @@ namespace DogMedicationTracker
         {
             services.AddControllersWithViews();
 
+
+            //Don't forget to run heroku commands
+            // heroku buildpacks:set jincod/dotnetcore
+            // heroku config:set ASPNETCORE_ENVIRONMENT=Production
+
             services.AddEntityFrameworkNpgsql().AddDbContext<DogMedicationTrackerContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
