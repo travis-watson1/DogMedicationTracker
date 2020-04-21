@@ -57,5 +57,17 @@ namespace DogMedicationTracker.Controllers
 
         }
 
+        //GET account/login
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl)
+        {
+            Login login = new Login
+            {
+                ReturnUrl = returnUrl
+            };
+
+            return View(login);
+        }
+
     }
 }
