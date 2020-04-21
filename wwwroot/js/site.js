@@ -16,3 +16,11 @@ $(function () {
         }, 2000);
     }
 });
+
+
+/**
+* Template Name: Regna - v2.0.0
+* Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
