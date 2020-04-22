@@ -86,8 +86,8 @@ h1, h2, h3, h4, h5, h6 {
 # Navbar
 --------------------------------------------------------------*/
 
-.navbar-default {
-    background: transparent;
+.navbar-dark {
+    background: transparent !important;
     position: absolute;
     top: 0;
     left: 0;
@@ -96,7 +96,8 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 2;
 }
 .navbar {
-    margin: 0 !important;
+    margin: 30px 20px 10px 20px !important;
+    box-shadow: none;
 }
 
 
@@ -115,6 +116,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .container-fluid {
     padding: 0;
+}
+
+.splash-title {
+    color: #2dc997;
 }
 
 @media (min-width: 1024px) {
@@ -201,6 +206,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-login {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 50px;
+    transition: 0.5s;
+    border: 2px solid #fff;
+    color: #fff;
+    margin: 3px 0;
+    /*width: 200px;*/
+}
+
+#hero .btn-dashboard:hover {
+    background: #2dc997;
+    border: 2px solid #2dc997;
+}
+
+#hero .btn-dashboard {
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-weight: 500;
