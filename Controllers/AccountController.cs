@@ -26,7 +26,15 @@ namespace DogMedicationTracker.Controllers
 
         //GET account/register
         [AllowAnonymous]
-        public IActionResult Register() => View();
+        public IActionResult Register()
+        {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("Index", "Tasks");
+            }
+
+            return View();
+        } 
 
 
         //POST account/register
@@ -70,6 +78,11 @@ namespace DogMedicationTracker.Controllers
             {
                 ReturnUrl = returnUrl
             };
+
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("Index", "Tasks");
+            }
 
             return View(login);
         }

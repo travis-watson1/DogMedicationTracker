@@ -5,19 +5,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
-        @if (User?.Identity?.IsAuthenticated ?? false)
-        {
-        <h1>Welcome Back!</h1>
-            <h2 style="color: #2dc997;">Click below to access your dashboard</h2>
-            <div class="row">
-                <div class="col-sm-12 buttons">
-                    <a class="btn-dashboard" asp-area="" asp-controller="Account" asp-action="Login">@User.Identity.Name's Dashboard</a>
-                </div>
-            </div>
-        }
-        else
-        {
-            <h1><span class="splash-title">Dog</span>Med</h1>
+        <h1><span class="splash-title">Dog</span>Med</h1>
             <h2>A simple way to keep track of your dog's medications</h2>
             <div class="row">
                 <div class="col-sm-12 col-md-6 buttons">
@@ -27,6 +15,5 @@
                     <a class="btn-register" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
                 </div>
             </div>
-        }
     </div>
 </section><!-- End Hero Section -->

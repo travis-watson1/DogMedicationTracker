@@ -14,21 +14,26 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-<header>
-    <partial name="_NavbarPartial"/>
-</header>
+    <header>
+        <partial name="_NavbarPartial" />
+    </header>
     <div class="container-fluid">
         <main role="main">
             <partial name="_NotificationPartial" />
             @RenderBody()
         </main>
     </div>
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2020 - DogMedicationTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <div class="container-fluid">
+            <!--Section: Content-->
+            <section class="px-md-5 py-5 text-center white-text mdb-color darken-1 z-depth-1 rounded">
+                    <h3 class="footer-text text-center"><span class="splash-title" style="font-size: 25px;">DogMed</span></h3>
+                    <h3 class="footer-text text-center">Created by Travis Watson</h3>
+            </section>
+            <!--Section: Content-->
+        </div>
+    }
     <script src="~/lib/mdbootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="~/lib/mdbootstrap/js/popper.min.js"></script>
     <script src="~/lib/mdbootstrap/js/bootstrap.min.js"></script>
