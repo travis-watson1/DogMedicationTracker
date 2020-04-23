@@ -20,6 +20,11 @@ namespace DogMedicationTracker.Controllers
 
         public IActionResult Index()
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToAction("Index", "Tasks");
+            }
+
             return View();
         }
 
