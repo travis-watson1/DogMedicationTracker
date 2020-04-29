@@ -6,6 +6,7 @@ using DogMedicationTracker.Data;
 using DogMedicationTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace DogMedicationTracker.Controllers
@@ -89,6 +90,26 @@ namespace DogMedicationTracker.Controllers
             }
 
             return View(medication);
+        }
+
+        //GET /medications/delete/id
+        public async Task<IActionResult> Delete(int id)
+        {
+            Medication medication = await context.Medications.FindAsync(id);
+
+            if (medication == null)
+            {
+                TempData["Error"] = "The category does not exist.";
+            }
+            else
+            {
+                context.Medications.Remove(medication);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The medication has been deleted.";
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
