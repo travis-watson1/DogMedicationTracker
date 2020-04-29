@@ -97,6 +97,9 @@ namespace DogMedicationTracker.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
+                    b.Property<int>("MedicationId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -106,6 +109,8 @@ namespace DogMedicationTracker.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicationId");
 
                     b.ToTable("Dogs");
                 });
@@ -117,9 +122,6 @@ namespace DogMedicationTracker.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("DogId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Interval")
                         .HasColumnType("integer");
 
@@ -128,8 +130,6 @@ namespace DogMedicationTracker.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DogId");
 
                     b.ToTable("Medications");
                 });
@@ -264,11 +264,11 @@ namespace DogMedicationTracker.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DogMedicationTracker.Models.Medication", b =>
+            modelBuilder.Entity("DogMedicationTracker.Models.Dog", b =>
                 {
-                    b.HasOne("DogMedicationTracker.Models.Dog", "Dog")
+                    b.HasOne("DogMedicationTracker.Models.Medication", "Medication")
                         .WithMany()
-                        .HasForeignKey("DogId")
+                        .HasForeignKey("MedicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

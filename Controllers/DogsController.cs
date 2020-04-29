@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DogMedicationTracker.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace DogMedicationTracker.Controllers
@@ -26,6 +27,7 @@ namespace DogMedicationTracker.Controllers
         //GET /dogs/create
         public IActionResult Create()
         {
+            ViewBag.MedicationId = new SelectList(context.Medications.OrderBy(x => x.Name), "Id", "Name");
 
             return View();
         }

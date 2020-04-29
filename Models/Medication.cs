@@ -14,9 +14,6 @@ namespace DogMedicationTracker.Models
         public string Name { get; set; }
         [Required]
         public int Interval { get; set; }
-        public int DogId { get; set; }
 
-        [ForeignKey("DogId")]
-        public virtual Dog Dog { get; set; }
     }
 }
