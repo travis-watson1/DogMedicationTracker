@@ -48,5 +48,47 @@ namespace DogMedicationTracker.Controllers
 
             return View(medication);
         }
+
+        //GET /medications/edit/id
+        public async Task<IActionResult> Edit(int id)
+        {
+            Medication medication = await context.Medications.FindAsync(id);
+
+            if (medication == null)
+            {
+                return NotFound();
+            }
+
+            return View(medication);
+        }        
+        
+        
+        //POST /medications/edit/id
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Medication medication)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var checkForDuplicate = await context.Medications.Where(x => x.Id != id)
+                    .FirstOrDefaultAsync(x => x.Name == medication.Name);
+
+                if (checkForDuplicate != null)
+                {
+                    ModelState.AddModelError("", "The medication already exists.");
+                    return View(medication);
+                }
+
+                context.Update(medication);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The medication has been edited.";
+
+                return RedirectToAction("Edit", new {id});
+            }
+
+            return View(medication);
+        }
     }
 }
