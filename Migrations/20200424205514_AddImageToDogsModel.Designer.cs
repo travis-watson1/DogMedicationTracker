@@ -3,15 +3,17 @@ using System;
 using DogMedicationTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DogMedicationTracker.Migrations
 {
     [DbContext(typeof(DogMedicationTrackerContext))]
-    partial class DogMedicationTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20200424205514_AddImageToDogsModel")]
+    partial class AddImageToDogsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,30 +110,6 @@ namespace DogMedicationTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Dogs");
-                });
-
-            modelBuilder.Entity("DogMedicationTracker.Models.Medication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("DogId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Interval")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DogId");
-
-                    b.ToTable("Medications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -262,15 +240,6 @@ namespace DogMedicationTracker.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("DogMedicationTracker.Models.Medication", b =>
-                {
-                    b.HasOne("DogMedicationTracker.Models.Dog", "Dog")
-                        .WithMany()
-                        .HasForeignKey("DogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

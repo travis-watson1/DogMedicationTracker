@@ -16,6 +16,7 @@ namespace DogMedicationTracker.Data
         }
 
         public DbSet<Dog> Dogs { get; set; }
+        public DbSet<Medication> Medications { get; set; }
 
     }
 }

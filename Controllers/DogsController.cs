@@ -17,8 +17,16 @@ namespace DogMedicationTracker.Controllers
         {
             this.context = context;
         }
-        public IActionResult Index()
+        public IActionResult _Index()
         {
+            return View();
+        }
+
+
+        //GET /dogs/create
+        public IActionResult Create()
+        {
+
             return View();
         }
     }
