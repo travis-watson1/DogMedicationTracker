@@ -4,44 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container text-center pt-5">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Interval)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Interval)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id"> | Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <h1>Medications</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-register">Create New</a>
+    </p>
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    Dosage Interval
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Interval) days
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id"> Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

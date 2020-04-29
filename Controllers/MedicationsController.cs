@@ -86,7 +86,7 @@ namespace DogMedicationTracker.Controllers
 
                 TempData["Success"] = "The medication has been edited.";
 
-                return RedirectToAction("Edit", new {id});
+                return RedirectToAction("Index");
             }
 
             return View(medication);
