@@ -48,6 +48,23 @@ namespace DogMedicationTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Dogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(nullable: false),
+                    Breed = table.Column<string>(nullable: false),
+                    Sex = table.Column<string>(nullable: false),
+                    MedicationNames = table.Column<string[]>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Medications",
                 columns: table => new
                 {
@@ -168,22 +185,23 @@ namespace DogMedicationTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Dogs",
+                name: "DogMedication",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(nullable: false),
-                    Breed = table.Column<string>(nullable: false),
-                    Sex = table.Column<string>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(nullable: true)
+                    DogId = table.Column<int>(nullable: false),
+                    MedicationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dogs", x => x.Id);
+                    table.PrimaryKey("PK_DogMedication", x => new { x.DogId, x.MedicationId });
                     table.ForeignKey(
-                        name: "FK_Dogs_Medications_MedicationId",
+                        name: "FK_DogMedication_Dogs_DogId",
+                        column: x => x.DogId,
+                        principalTable: "Dogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DogMedication_Medications_MedicationId",
                         column: x => x.MedicationId,
                         principalTable: "Medications",
                         principalColumn: "Id",
@@ -228,8 +246,8 @@ namespace DogMedicationTracker.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dogs_MedicationId",
-                table: "Dogs",
+                name: "IX_DogMedication_MedicationId",
+                table: "DogMedication",
                 column: "MedicationId");
         }
 
@@ -251,13 +269,16 @@ namespace DogMedicationTracker.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Dogs");
+                name: "DogMedication");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Dogs");
 
             migrationBuilder.DropTable(
                 name: "Medications");

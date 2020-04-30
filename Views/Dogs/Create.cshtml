@@ -4,44 +4,46 @@
     ViewData["Title"] = "Add a Pet";
 }
 
-<h1>Create</h1>
-
-<h4>Dog</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Breed" class="control-label"></label>
-                <input asp-for="Breed" class="form-control" />
-                <span asp-validation-for="Breed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sex" class="control-label"></label>
-                <input asp-for="Sex" class="form-control" />
-                <span asp-validation-for="Sex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MedicationId" class="control-label"></label>
-                    <select asp-for="MedicationId" asp-items="@ViewBag.MedicationId" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
-                        <option value="0" disabled selected>Choose your pet's medications</option>
-                    </select>
-                @*<select asp-for="MedicationId" asp-items="@ViewBag.MedicationId" class="form-control">
-                    <option value="0">Choose a Medication</option>
-                </select>*@
-                    <span asp-validation-for="Sex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="container">
+    <form class="text-center" style="color: #757575;" asp-action="Create" enctype="multipart/form-data">
+                                <h3 class="font-weight-bold my-4 pb-2 text-center dark-grey-text">Add a New Pet</h3>
+                                <!-- Name -->
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <input asp-for="Name" class="form-control mb-4" placeholder="Pet's Name" />
+                                <!-- Email -->
+                                <span asp-validation-for="Breed" class="text-danger"></span>
+                                <input asp-for="Breed" class="form-control" placeholder="Breed" />
+                                <select asp-for="Sex" class="mdb-select md-form md-outline colorful-select dropdown-primary">
+                                    <option value="" disabled selected>Sex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <div class="form-group">
+                                    <select asp-for="MedicationNames" asp-items="@ViewBag.MedicationNames" class="mdb-select md-outline colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                                        <option value="0" disabled selected>Choose your pet's medications</option>
+                                    </select>
+                                    <span asp-validation-for="Sex" class="text-danger"></span>
+                                </div>
+                                <form class="md-form">
+                                    <div class="file-field">
+                                        <div class="mb-4">
+                                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                                                 class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar"
+                                                 id="imgpreview">
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="btn btn-mdb-color btn-rounded float-left">
+                                                <span>Add photo</span>
+                                                <input asp-for="ImageUpload" type="file">
+                                                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="text-center">
+                                    <input type="submit" value="Create" class="btn btn-register btn-rounded my-4 waves-effect"></input>
+                                </div>
+                            </form>
 </div>
 
 
@@ -51,6 +53,10 @@
     <script>
         $(document).ready(function() {
             $('.mdb-select').materialSelect();
+        });
+
+        $("#ImageUpload").change(function() {
+            readUrl(this);
         });
     </script>
 }

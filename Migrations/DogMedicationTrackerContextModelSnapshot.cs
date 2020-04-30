@@ -97,8 +97,8 @@ namespace DogMedicationTracker.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
-                    b.Property<int>("MedicationId")
-                        .HasColumnType("integer");
+                    b.Property<string[]>("MedicationNames")
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -110,9 +110,22 @@ namespace DogMedicationTracker.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Dogs");
+                });
+
+            modelBuilder.Entity("DogMedicationTracker.Models.DogMedication", b =>
+                {
+                    b.Property<int>("DogId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MedicationId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("DogId", "MedicationId");
+
                     b.HasIndex("MedicationId");
 
-                    b.ToTable("Dogs");
+                    b.ToTable("DogMedication");
                 });
 
             modelBuilder.Entity("DogMedicationTracker.Models.Medication", b =>
@@ -264,10 +277,16 @@ namespace DogMedicationTracker.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DogMedicationTracker.Models.Dog", b =>
+            modelBuilder.Entity("DogMedicationTracker.Models.DogMedication", b =>
                 {
+                    b.HasOne("DogMedicationTracker.Models.Dog", "Dog")
+                        .WithMany("DogMedications")
+                        .HasForeignKey("DogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DogMedicationTracker.Models.Medication", "Medication")
-                        .WithMany()
+                        .WithMany("DogMedications")
                         .HasForeignKey("MedicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

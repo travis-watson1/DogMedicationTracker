@@ -17,6 +17,18 @@ $(function () {
     }
 });
 
+function readUrl(input) {
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            $("img#imgpreview").attr("src", e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 
 /**
 * Template Name: Regna - v2.0.0

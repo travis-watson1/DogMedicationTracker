@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DogMedicationTracker.Models
 {
@@ -17,13 +18,18 @@ namespace DogMedicationTracker.Models
         [Required]
         public string Sex { get; set; }
 
-        public int MedicationId { get; set; }
-
+        public string[] MedicationNames { get; set; }
 
         public string Image { get; set; }
 
-        [ForeignKey("MedicationId")]
-        public virtual Medication Medication { get; set; }
+        [NotMapped]
+        public IFormFile ImageUpload { get; set; }
+
+
+        public List<DogMedication> DogMedications { get; set; }
+
+
+
 
     }
 }

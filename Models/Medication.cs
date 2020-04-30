@@ -15,5 +15,8 @@ namespace DogMedicationTracker.Models
         [Required]
         public int Interval { get; set; }
 
+        public List<DogMedication> DogMedications { get; set; }
+
+
     }
 }
