@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using CmsShoppingCart.Infrastructure;
 using Microsoft.AspNetCore.Http;
 
 namespace DogMedicationTracker.Models
@@ -23,6 +24,7 @@ namespace DogMedicationTracker.Models
         public string Image { get; set; }
 
         [NotMapped]
+        [FileExtension]
         public IFormFile ImageUpload { get; set; }
 
 

@@ -45,6 +45,13 @@ thead {
     background-color: darkgray;
 }
 
+.box {
+    background-color: white;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    padding: 5%;
+}
+
 
 
 /*--------------------------------------------------------------
@@ -66,7 +73,7 @@ thead {
 }
 
 .custom-color {
-    background-color: #2dc997;
+    background-color: #45526e;
 }
 
 

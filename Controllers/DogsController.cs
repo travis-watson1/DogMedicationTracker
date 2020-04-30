@@ -46,13 +46,13 @@ namespace DogMedicationTracker.Controllers
             if (ModelState.IsValid)
             {
                 string imageName = "noimage.png";
+
+
                 if (dog.ImageUpload != null)
                 {
-                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/uploads");
-
                     var rand = new Random();
                     var randomNumber = rand.Next(1000);
-
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/uploads");
                     imageName = randomNumber + dog.ImageUpload.FileName;
                     string filePath = Path.Combine(uploadsDir, imageName);
                     FileStream fs = new FileStream(filePath, FileMode.Create);
@@ -71,6 +71,7 @@ namespace DogMedicationTracker.Controllers
                 return RedirectToAction("Index", "Tasks");
             }
 
+            TempData["Error"] = "There was an error adding your pet.";
             return View(dog);
         }
     }
