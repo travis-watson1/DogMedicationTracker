@@ -23,9 +23,9 @@ namespace DogMedicationTracker.Controllers
             this.context = context;
             this.webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await context.Dogs.ToListAsync());
         }
 
 
@@ -50,10 +50,10 @@ namespace DogMedicationTracker.Controllers
 
                 if (dog.ImageUpload != null)
                 {
-                    var rand = new Random();
-                    var randomNumber = rand.Next(1000);
+                    //var rand = new Random();
+                    //var randomNumber = rand.Next(1000);
                     string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/uploads");
-                    imageName = randomNumber + dog.ImageUpload.FileName;
+                    imageName = dog.ImageUpload.FileName;
                     string filePath = Path.Combine(uploadsDir, imageName);
                     FileStream fs = new FileStream(filePath, FileMode.Create);
                     await dog.ImageUpload.CopyToAsync(fs);
