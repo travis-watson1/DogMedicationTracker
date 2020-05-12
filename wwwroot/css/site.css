@@ -264,9 +264,28 @@ thead {
 
 
 /*--------------------------------------------------------------
-# Tasks Homepage Section
+# Dogs Homepage Section
 --------------------------------------------------------------*/
 
 .avatar-pic {
     width: 25%;
+}
+
+.card-image {
+    background: url(../images/jumbotron.jpg);
+
+}
+
+.header-text {
+    width: 100%;
+    height: 100% !important;
+}
+
+
+@media (max-width: 768px) {
+
+}
+
+@media (min-width: 769px) {
+    .jumbotron { min-height: 75vh; }
 }

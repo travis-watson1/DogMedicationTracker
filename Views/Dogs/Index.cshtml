@@ -4,34 +4,17 @@
 @{
     ViewData["Title"] = "Home";
 }
-<div class="container py-5">
-    <!--Section: Content-->
-    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
-        <!--Grid row-->
-        <div class="row">
-            <!--Grid column-->
-            <div class="col-md-6 mb-4 mb-md-0">
-                <!--Image-->
-                <div class="view overlay z-depth-1-half">
-                    <img src="https://mdbootstrap.com/img/Photos/Others/img%20(16).jpg" class="img-fluid" alt="">
-                    <a href="#">
-                        <div class="mask rgba-white-light"></div>
-                    </a>
-                </div>
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-6 mb-4 mb-md-0">
-                <h3 class="font-weight-bold">Welcome Back, @User.Identity.Name</h3>
-                <p class="text-muted">
-                Below you will find a listing of all your pets. You will be able to add medications for each pet as well as input dates that medications were given.
-            </div>
-            <!--Grid column-->
+<!-- Jumbotron -->
+<div class="card card-image jumbotron">
+    <div class="text-white py-5 px-4 header-text">
+        <div class="py-5">
+            <!-- Content -->
+            <h2 class="card-title h2 my-4 py-2">Welcome Back @User.Identity.Name</h2>
+            <p class="mb-4 pb-2 px-md-5 mx-md-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur obcaecati vero aliquid libero doloribus ad, unde tempora maiores, ullam, modi qui quidem minima debitis perferendis vitae cumque et quo impedit.</p>
         </div>
-        <!--Grid row-->
-    </section>
-    <!--Section: Content-->
+    </div>
 </div>
+<!-- Jumbotron -->
 <div class="container my-5">
     <!-- Section: Block Content -->
     <section class="dark-grey-text text-center">
