@@ -32,8 +32,6 @@ namespace DogMedicationTracker.Controllers
         //GET /dogs/create
         public IActionResult Create()
         {
-            ViewBag.MedicationNames = new SelectList(context.Medications.OrderBy(x => x.Name), "Name", "Name");
-
             return View();
         }        
         

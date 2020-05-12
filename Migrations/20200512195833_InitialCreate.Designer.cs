@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DogMedicationTracker.Migrations
 {
     [DbContext(typeof(DogMedicationTrackerContext))]
-    [Migration("20200430154432_InitialCreate")]
+    [Migration("20200512195833_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,9 +99,6 @@ namespace DogMedicationTracker.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
-                    b.Property<string[]>("MedicationNames")
-                        .HasColumnType("text[]");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -113,40 +110,6 @@ namespace DogMedicationTracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Dogs");
-                });
-
-            modelBuilder.Entity("DogMedicationTracker.Models.DogMedication", b =>
-                {
-                    b.Property<int>("DogId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MedicationId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("DogId", "MedicationId");
-
-                    b.HasIndex("MedicationId");
-
-                    b.ToTable("DogMedication");
-                });
-
-            modelBuilder.Entity("DogMedicationTracker.Models.Medication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Interval")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -277,21 +240,6 @@ namespace DogMedicationTracker.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("DogMedicationTracker.Models.DogMedication", b =>
-                {
-                    b.HasOne("DogMedicationTracker.Models.Dog", "Dog")
-                        .WithMany("DogMedications")
-                        .HasForeignKey("DogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DogMedicationTracker.Models.Medication", "Medication")
-                        .WithMany("DogMedications")
-                        .HasForeignKey("MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -23,14 +23,14 @@ namespace DogMedicationTracker
                 var services = scope.ServiceProvider;
                 var dbContext = services.GetRequiredService<DogMedicationTrackerContext>();
 
-                //try
-                //{
-                //    dbContext.Database.Migrate();
-                //}
-                //catch (Exception)
-                //{
-                //    throw;
-                //}
+                try
+                {
+                    dbContext.Database.Migrate();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
             host.Run();

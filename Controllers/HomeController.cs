@@ -22,7 +22,7 @@ namespace DogMedicationTracker.Controllers
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Index", "Tasks");
+                return RedirectToAction("Index", "Dogs");
             }
 
             return View();

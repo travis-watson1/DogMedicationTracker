@@ -16,18 +16,6 @@ namespace DogMedicationTracker.Data
         }
 
         public DbSet<Dog> Dogs { get; set; }
-        public DbSet<Medication> Medications { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<DogMedication>()
-                .HasKey(t => new { t.DogId, t.MedicationId });
-
-
-        }
 
     }
 }

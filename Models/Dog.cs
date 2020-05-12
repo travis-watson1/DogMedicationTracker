@@ -19,8 +19,6 @@ namespace DogMedicationTracker.Models
         [Required]
         public string Sex { get; set; }
 
-        public string[] MedicationNames { get; set; }
-
         public string Image { get; set; }
 
         [NotMapped]
@@ -28,7 +26,6 @@ namespace DogMedicationTracker.Models
         public IFormFile ImageUpload { get; set; }
 
 
-        public List<DogMedication> DogMedications { get; set; }
 
 
 

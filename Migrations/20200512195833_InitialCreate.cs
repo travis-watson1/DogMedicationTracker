@@ -56,26 +56,11 @@ namespace DogMedicationTracker.Migrations
                     Name = table.Column<string>(nullable: false),
                     Breed = table.Column<string>(nullable: false),
                     Sex = table.Column<string>(nullable: false),
-                    MedicationNames = table.Column<string[]>(nullable: true),
                     Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dogs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Medications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(nullable: false),
-                    Interval = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Medications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,30 +169,6 @@ namespace DogMedicationTracker.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "DogMedication",
-                columns: table => new
-                {
-                    DogId = table.Column<int>(nullable: false),
-                    MedicationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DogMedication", x => new { x.DogId, x.MedicationId });
-                    table.ForeignKey(
-                        name: "FK_DogMedication_Dogs_DogId",
-                        column: x => x.DogId,
-                        principalTable: "Dogs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DogMedication_Medications_MedicationId",
-                        column: x => x.MedicationId,
-                        principalTable: "Medications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -244,11 +205,6 @@ namespace DogMedicationTracker.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DogMedication_MedicationId",
-                table: "DogMedication",
-                column: "MedicationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -269,19 +225,13 @@ namespace DogMedicationTracker.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DogMedication");
+                name: "Dogs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Dogs");
-
-            migrationBuilder.DropTable(
-                name: "Medications");
         }
     }
 }
