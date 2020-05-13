@@ -22,6 +22,7 @@
         @if (!Model.Any())
         {
             <p class="text-muted w-responsive mx-auto mb-5">You currently have zero pets.</p>
+            <a class="btn-register" asp-area="" asp-controller="Dogs" asp-action="Create">Create One?</a>
         }
         else
         {
@@ -41,7 +42,7 @@
                             <h4 class="font-weight-bold mt-1 mb-3">@dog.Name</h4>
                             <h5 class="font-weight-bold mt-1 mb-3">@dog.Breed</h5>
                             <h5 class="font-weight-bold mt-1 mb-3">@dog.Sex</h5>
-                            <a class="btn btn-indigo btn-sm btn-rounded"><i class="fas fa-clone left"></i> View project</a>
+                            <a class="btn btn-indigo btn-sm btn-rounded" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@dog.Id"><i class="fas fa-clone left"></i>Edit</a>
                         </div>
                     </div>
                 }

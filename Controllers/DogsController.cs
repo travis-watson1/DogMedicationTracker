@@ -66,10 +66,62 @@ namespace DogMedicationTracker.Controllers
 
                 TempData["Success"] = "Your pet has been successfully created.";
 
-                return RedirectToAction("Index", "Tasks");
+                return RedirectToAction("Index", "Dogs");
             }
 
             TempData["Error"] = "There was an error adding your pet.";
+            return View(dog);
+        }
+
+        //GET /dogs/edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            Dog dog = await context.Dogs.FindAsync(id);
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return View(dog);
+        }        
+        
+        //POST /dogs/edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Dog dog)
+        {
+            if (ModelState.IsValid)
+            {
+                if (dog.ImageUpload != null)
+                {
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/products");
+
+                    if (!string.Equals(dog.Image, "noimage.png"))
+                    {
+                        string oldImagePath = Path.Combine(uploadsDir, dog.Image);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+
+                    }
+
+                    string imageName =dog.ImageUpload.FileName;
+                    string filePath = Path.Combine(uploadsDir, imageName);
+                    FileStream fs = new FileStream(filePath, FileMode.Create);
+                    await dog.ImageUpload.CopyToAsync(fs);
+                    fs.Close();
+                    dog.Image = imageName;
+                }
+
+                context.Update(dog);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "Your pet has been edited.";
+
+                return RedirectToAction("Index");
+            }
+
             return View(dog);
         }
     }
