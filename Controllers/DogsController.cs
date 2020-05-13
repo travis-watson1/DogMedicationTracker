@@ -94,9 +94,9 @@ namespace DogMedicationTracker.Controllers
             {
                 if (dog.ImageUpload != null)
                 {
-                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/products");
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/uploads");
 
-                    if (!string.Equals(dog.Image, "noimage.png"))
+                    if (!string.Equals(dog.Image, "noimage.png") && dog.Image != null)
                     {
                         string oldImagePath = Path.Combine(uploadsDir, dog.Image);
                         if (System.IO.File.Exists(oldImagePath))
