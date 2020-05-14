@@ -290,3 +290,35 @@ thead {
 @media (min-width: 769px) {
     .jumbotron { min-height: 75vh; }
 }
+
+/*--------------------------------------------------------------
+# Dogs Details Section
+--------------------------------------------------------------*/
+.details-container {
+    padding: 2%;
+}
+
+
+.details-image {
+    border-radius: 100%;
+    width: 20%;
+    height: auto;
+}
+
+.details-button {
+    width: 120px;
+    height: auto;
+}
+
+.details-text {
+    color: #45526e;
+    font-weight: bold;
+    font-size: small;
+}
+
+@media (max-width: 768px) {
+    .details-image {
+        width: 35%;
+        height: auto;
+    }
+}

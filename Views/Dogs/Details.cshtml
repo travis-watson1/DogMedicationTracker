@@ -4,45 +4,20 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Dog</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Breed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Breed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sex)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sex)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-    </dl>
+<div class="container-fluid text-center details-container">
+    <img src="~/media/uploads/@Model.Image" class="img-fluid details-image"/>
+    <br/><br/>
+    <h1>@Model.Name</h1>
+    <p class="details-text"><strong>Breed: @Model.Breed | Sex: @Model.Sex</strong></p>
+    <a class="btn btn-indigo btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit left"></i>Edit</a>
+    <a class="btn btn-danger btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash-alt left"></i>Delete</a>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+<div class="container-fluid text-center medication-container">
+    <br/><br/>
+    <h1>Medications</h1>
+    <a class="btn btn-indigo btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit left"></i>Edit</a>
+    <a class="btn btn-danger btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash-alt left"></i>Delete</a>
 </div>
+
+
