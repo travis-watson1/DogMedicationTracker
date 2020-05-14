@@ -124,6 +124,18 @@ namespace DogMedicationTracker.Controllers
 
             return View(dog);
         }
+
+        //GET /dogs/details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            Dog dog = await context.Dogs.FindAsync(id);
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return View(dog);
+        }
     }
     
 }
