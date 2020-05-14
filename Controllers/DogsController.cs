@@ -136,6 +136,35 @@ namespace DogMedicationTracker.Controllers
 
             return View(dog);
         }
+
+        //GET /dogs/delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            Dog dog = await context.Dogs.FindAsync(id);
+
+            if (dog == null)
+            {
+                TempData["Error"] = "The dog does not exist.";
+            }
+            else
+            {
+                if (!string.Equals(dog.Image, "noimage.png"))
+                {
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/uploads");
+                    string oldImagePath = Path.Combine(uploadsDir, dog.Image);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+                context.Dogs.Remove(dog);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "Your pet has been deleted.";
+            }
+
+            return RedirectToAction("Index");
+        }
     }
     
 }
