@@ -32,14 +32,10 @@
                 @foreach (var dog in Model)
                 {
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <div class="view overlay rounded z-depth-1">
-                            <img src="~/media/uploads/@dog.Image" class="img-fluid" alt="Image of Dog">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
+                            <img src="~/media/uploads/@dog.Image" class="img-fluid" alt="Image of Dog" style="width: 250px; height: 250px; border-radius: 50%;">
                         <div class="px-3 pt-3 mx-1 mt-1 pb-0">
-                            <h4 class="font-weight-bold mt-1 mb-3">@dog.Name</h4>
+                            <h4 class="font-weight-bold mt-1 mb-3"><a asp-area="" asp-controller="Dogs" asp-action="Details" asp-route-id="@dog.Id">@dog.Name</a>
+                            </h4>
                             <h5 class="font-weight-bold mt-1 mb-3">@dog.Breed</h5>
                             <h5 class="font-weight-bold mt-1 mb-3">@dog.Sex</h5>
                             <a class="btn btn-indigo btn-sm btn-rounded" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@dog.Id"><i class="fas fa-clone left"></i>Edit</a>

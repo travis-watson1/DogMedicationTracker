@@ -13,11 +13,61 @@
     <a class="btn btn-indigo btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit left"></i>Edit</a>
     <a class="btn btn-danger btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash-alt left"></i>Delete</a>
 </div>
-<div class="container-fluid text-center medication-container">
-    <br/><br/>
+<div class="container text-center medication-container">
+    <br /><br />
     <h1>Medications</h1>
-    <a class="btn btn-indigo btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit left"></i>Edit</a>
-    <a class="btn btn-danger btn-md btn-rounded details-button" asp-area="" asp-controller="Dogs" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash-alt left"></i>Delete</a>
+    <!-- Card -->
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="card">
+                <!-- Card image -->
+                <div class="view overlay">
+                    <img class="card-img-top" src="~/images/dogmedication.jpg" alt="Card image cap">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!-- Card content -->
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title">Card title</h4>
+                    <hr>
+                    <!-- Text -->
+                    <p class="card-text">
+                        <a class="btn btn-indigo btn-sm btn-rounded" asp-area="" asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit left"></i>Edit</a>
+                        <a class="btn btn-danger btn-sm btn-rounded" asp-area="" asp-controller="Dogs" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash-alt left"></i>Delete</a>
+                    </p>
+
+                </div>
+                <!-- Card footer -->
+                <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+                    <ul class="list-unstyled list-inline font-small">
+                        <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>Next Dosage: 05/10/2015</li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        <!-- Card -->
+    </div>
+</div>
+<div class="container text-center history-container">
+    <br/><br/>
+    <h1>History</h1>
+    <table class="table">
+        <thead class="black white-text">
+        <tr>
+            <th scope="col">Medication</th>
+            <th scope="col">Dosage Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 
