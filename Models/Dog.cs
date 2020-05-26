@@ -25,6 +25,8 @@ namespace DogMedicationTracker.Models
         [FileExtension]
         public IFormFile ImageUpload { get; set; }
 
+        public List<Medication> Medications { get; set; }
+
 
 
 
